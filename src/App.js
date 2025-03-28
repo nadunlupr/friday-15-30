@@ -34,7 +34,7 @@ class App extends React.Component {
           <div style={{ display: 'flex' }}>
             {
               this.state.lessons
-                .map(le => <LessonCard name={le.text}
+                .map(le => <LessonCard name={le.text} id={le.value}
                   description={le.title}
                   key={le.text} />)
             }
