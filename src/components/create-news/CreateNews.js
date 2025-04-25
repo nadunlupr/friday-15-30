@@ -1,6 +1,7 @@
 import { useState } from 'react';
 // import axios from 'axios';
 import api from '../../services/api';
+import { useNavigate } from 'react-router';
 
 function CreateNews(props) {
     // const [title, setTitle] = useState('this is my default title');
@@ -10,14 +11,27 @@ function CreateNews(props) {
         title: '',
         slug: undefined,
         text: '',
-    })
+    });
+    const navigate = useNavigate();
 
-    const addNews = () => {
-        api.post('/novice', {
-            ...state
-        })
-            .then(res => console.log('result: ', res))
-            .catch(err => console.error('error: ', err));
+    const addNews = async() => {
+        try {
+            const { data } = await api.post('/novice', {
+                ...state
+            });
+                // .then(res => console.log('result: ', res))
+                // .catch(err => console.error('error: ', err));
+
+            const {
+                id,
+                news
+            } = data;
+
+            navigate(`/success/${id}`);
+
+        } catch (error) {
+            console.error('error: ', err)
+        }
     }
 
     return (
