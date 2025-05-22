@@ -4,16 +4,21 @@ import App from './App';
 import LessonDetails from './components/LessonDetails';
 import CreateNews from './components/create-news/CreateNews';
 import SuccessPage from './components/shared/SuccessPage';
+import Home from './components/home/Home';
+import Counter from './components/counter/Counter';
 
 export class AppRouter extends Component {
-    render(){
-        return(
+    render() {
+        return (
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<App />} />
-                    <Route path="lesson" element={<LessonDetails />} />
-                    <Route path='news-create' element={<CreateNews />} />
-                    <Route path='success/:id' element={<SuccessPage />} />
+                    <Route path="/" element={<App />} >
+                        <Route index element={<Home />} />
+                        <Route path="lesson" element={<LessonDetails />} />
+                        <Route path='news-create' element={<CreateNews />} />
+                        <Route path='success/:id' element={<SuccessPage />} />
+                        <Route path='counter' element={<Counter />} />
+                    </Route>
                 </Routes>
             </BrowserRouter>
         )
